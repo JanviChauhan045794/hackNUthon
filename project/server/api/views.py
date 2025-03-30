@@ -13,4 +13,3 @@ class FarmerProfileViewSet(viewsets.ModelViewSet):
     queryset = FarmerProfile.objects.all()
     serializer_class = FarmerProfileSerializer
 
-# Create similar viewsets for all other models

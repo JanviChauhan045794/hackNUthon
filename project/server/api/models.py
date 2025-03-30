@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 from django.db import models
@@ -269,3 +270,66 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class VirtualHerbalPlant(models.Model):
+    DIFFICULTY_LEVELS = [
+        ('easy', 'Easy'),
+        ('medium', 'Medium'),
+        ('hard', 'Hard'),
+    ]
+    
+    scientific_name = models.CharField(
+        max_length=255,
+        validators=[MinLengthValidator(3)],
+        help_text="The botanical name of the plant (e.g., Ocimum tenuiflorum)",
+        unique=True
+    )
+    
+    common_names = models.JSONField(
+        default=list,
+        help_text="List of common names for the plant (e.g., ['Tulsi', 'Holy Basil'])"
+    )
+    
+    
+    medicinal_uses = models.TextField(
+        help_text="AYUSH-approved medicinal uses of the plant"
+    )
+    
+    cultivation_guide = models.TextField(
+        help_text="Detailed cultivation instructions"
+    )
+    
+    ayush_certified = models.BooleanField(
+        default=False,
+        help_text="Whether the plant is AYUSH certified"
+    )
+    
+    difficulty_level = models.CharField(
+        choices=DIFFICULTY_LEVELS,
+        default='medium',
+        help_text="Cultivation difficulty level"
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Virtual Herbal Plant"
+        verbose_name_plural = "Virtual Herbal Plants"
+        ordering = ['scientific_name']
+        indexes = [
+            models.Index(fields=['scientific_name']),
+            models.Index(fields=['ayush_certified']),
+        ]
+    
+    def __str__(self):
+        return f"{self.scientific_name} ({', '.join(self.common_names[:2])})"
+
+    def get_difficulty_color(self):
+        """Helper method for UI representation"""
+        return {
+            'easy': 'success',
+            'medium': 'warning',
+            'hard': 'danger'
+        }.get(self.difficulty_level, 'secondary')
