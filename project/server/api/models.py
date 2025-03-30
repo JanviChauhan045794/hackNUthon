@@ -306,6 +306,7 @@ class VirtualHerbalPlant(models.Model):
     )
     
     difficulty_level = models.CharField(
+        max_length=6,
         choices=DIFFICULTY_LEVELS,
         default='medium',
         help_text="Cultivation difficulty level"
