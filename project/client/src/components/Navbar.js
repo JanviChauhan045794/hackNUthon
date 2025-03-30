@@ -53,7 +53,7 @@ const Navbar = () => {
           </ul>
 
           <div className="nav-actions">
-            <button className="cta-button">Sign Up</button>
+            <button className="cta-button">Log in </button>
           </div>
         </div>
       </div>
