@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import "./Signup.css";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -7,156 +9,235 @@ const Signup = () => {
     email: "",
     phone_number: "",
     password: "",
-    confirmPassword: "",
+    confirm_password: "",
     role: "Customer",
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    // Clear error when user starts typing
+    setError("");
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset errors
-    setSuccess(""); // Reset success message
+    setError("");
+    setSuccess("");
+    setIsLoading(true);
 
-    // Validate required fields
-    if (!formData.full_name || !formData.email || !formData.phone_number || !formData.password || !formData.confirmPassword) {
-      setError("All fields are required.");
+    // Check for empty fields
+    if (!formData.full_name || !formData.email || !formData.phone_number || !formData.password || !formData.confirm_password || !formData.role) {
+      setError("Please fill in all fields");
+      setIsLoading(false);
       return;
     }
 
-    // Validate password match
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+    // Check for password match
+    if (formData.password !== formData.confirm_password) {
+      setError("Passwords do not match");
+      setIsLoading(false);
       return;
     }
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/api/register/",
-        {
-          full_name: formData.full_name,
-          email: formData.email,
-          phone_number: formData.phone_number,
-          password: formData.password,
-          role: formData.role,
-        },
+        "http://127.0.0.1:8000/api/api/register/", 
+        formData, 
         { headers: { "Content-Type": "application/json" } }
       );
-
-      console.log("Registration Successful:", response.data);
-      setSuccess("User added successfully!"); // ✅ Success message
-      setError(""); // Clear error message
-
-      // Clear form
-      setFormData({
-        full_name: "",
-        email: "",
-        phone_number: "",
-        password: "",
-        confirmPassword: "",
-        role: "Customer",
-      });
+      
+      if (response.status >= 200 && response.status < 300) {
+        setSuccess("Registration successful!");
+        setFormData({
+          full_name: "",
+          email: "",
+          phone_number: "",
+          password: "",
+          confirm_password: "",
+          role: "Customer",
+        });
+        // Redirect immediately to login page
+        window.location.href = "/Login";
+      }
     } catch (error) {
-      console.error("Error details:", error.response?.data);
-      setError(error.response?.data?.message || "Registration failed. Please try again.");
+      // Don't show backend errors
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-
-      {error && <p className="text-red-500 mb-3">{error}</p>}
-      {success && <p className="text-green-500 mb-3">{success}</p>}
-
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Full Name</label>
-          <input
-            type="text"
-            name="full_name"
-            value={formData.full_name}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-            required
-          />
+    <div className="signup-container">
+      <div className="signup-card">
+        <div className="signup-header">
+          <h2 className="signup-title">Create Account</h2>
+          <p className="signup-subtitle">
+            Already have an account?{" "}
+            <Link to="/Login" className="signup-link">
+              Sign in
+            </Link>
+          </p>
         </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-            required
-          />
-        </div>
+        {error && (
+          <div className="error-message">
+            <p className="error-text">{error}</p>
+          </div>
+        )}
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Phone Number</label>
-          <input
-            type="text"
-            name="phone_number"
-            value={formData.phone_number}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-            required
-          />
-        </div>
+        {success && (
+          <div className="success-message">
+            <p className="success-text">{success}</p>
+          </div>
+        )}
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <label htmlFor="full_name" className="form-label">
+              Full Name
+            </label>
+            <input
+              id="full_name"
+              name="full_name"
+              type="text"
+              value={formData.full_name}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="John Doe"
+              required
+            />
+          </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-            required
-          />
-        </div>
+          <div className="form-row">
+            <label htmlFor="email" className="form-label">
+              Email Address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="email@example.com"
+              required
+            />
+          </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Role</label>
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
+          <div className="form-row">
+            <label htmlFor="phone_number" className="form-label">
+              Phone Number
+            </label>
+            <input
+              id="phone_number"
+              name="phone_number"
+              type="tel"
+              value={formData.phone_number}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="+1 (555) 123-4567"
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <div className="password-input-container">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+                title={showPassword ? "Hide password" : "Show password"}
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {showPassword ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <label htmlFor="confirm_password" className="form-label">
+              Confirm Password
+            </label>
+            <div className="password-input-container">
+              <input
+                id="confirm_password"
+                name="confirm_password"
+                type={showConfirmPassword ? "text" : "password"}
+                value={formData.confirm_password}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                title={showConfirmPassword ? "Hide password" : "Show password"}
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {showConfirmPassword ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <label htmlFor="role" className="form-label">
+              Role
+            </label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="form-input"
+              required
+            >
+              <option value="Customer">Customer</option>
+              <option value="Farmer">Farmer</option>
+              <option value="Admin">Admin</option>
+              <option value="Verifier">Verifier</option>
+              <option value="HerbalExpert">Herbal Expert</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="submit-button"
           >
-            <option value="Customer">Customer</option>
-            <option value="Farmer">Farmer</option>
-            <option value="Admin">Admin</option>
-            <option value="Verifier">Verifier</option>
-            <option value="HerbalExpert">Herbal Expert</option>
-          </select>
-        </div>
-
-        <button type="submit" className="w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-          Sign Up
-        </button>
-      </form>
+            {isLoading ? "Creating Account..." : "Create Account"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
