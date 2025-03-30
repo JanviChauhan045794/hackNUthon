@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from .views import register_user
 
 
 from . import views
@@ -11,6 +12,7 @@ router.register(r'farmers', views.FarmerProfileViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/register/', register_user, name="register"),
    
 ]
 
