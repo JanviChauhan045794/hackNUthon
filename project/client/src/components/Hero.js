@@ -3,19 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   const navigate = useNavigate();
-=======
-  const handleImageError = (e) => {
-    e.target.src = 'https://via.placeholder.com/500x300?text=Organic+Products';
-  };
->>>>>>> Stashed changes
-=======
-  const handleImageError = (e) => {
-    e.target.src = 'https://via.placeholder.com/500x300?text=Organic+Products';
-  };
->>>>>>> Stashed changes
 
   return (
     <div className="hero-container">
@@ -25,9 +13,10 @@ const Hero = () => {
             Welcome to <span className="highlight">Ayush</span>
           </h1>
           <p className="hero-subtitle">
-            Organic products to every home, a fair market to every farmer!
-            हर घर तक जैविक उत्पाद,
-            हर किसान तक सही बाज़ार!
+          Organic products to every home, a fair market to every farmer!
+                          हर घर तक जैविक उत्पाद,
+                          हर किसान तक सही बाज़ार!
+
           </p>
           <div className="hero-buttons">
             <button 
@@ -45,10 +34,9 @@ const Hero = () => {
           <div className="animated-shape shape-2"></div>
           <div className="animated-shape shape-3"></div>
           <img 
-            src="public/images/hero_illustration.jpeg"
-            alt="Organic Products Illustration"
+            src="/hero-illustration.svg" 
+            alt="Hero Illustration"
             className="main-image"
-            onError={handleImageError}
           />
         </div>
       </div>
