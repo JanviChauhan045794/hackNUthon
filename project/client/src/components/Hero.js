@@ -8,10 +8,12 @@ const Hero = () => {
         <div className="hero-text">
           <h1 className="hero-title">
             Welcome to <span className="highlight">Ayush</span>
-            <span className="animate-wave">👋</span>
           </h1>
           <p className="hero-subtitle">
-            Transforming ideas into digital reality with innovative solutions
+          Organic products to every home, a fair market to every farmer!
+                          हर घर तक जैविक उत्पाद,
+                          हर किसान तक सही बाज़ार!
+
           </p>
           <div className="hero-buttons">
             <button className="primary-btn">Get Started</button>
@@ -31,7 +33,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="hero-stats">
+      {/*<div className="hero-stats">
         <div className="stat-item">
           <span className="stat-number">500+</span>
           <span className="stat-label">Happy Clients</span>
@@ -44,7 +46,7 @@ const Hero = () => {
           <span className="stat-number">24/7</span>
           <span className="stat-label">Support</span>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 };
