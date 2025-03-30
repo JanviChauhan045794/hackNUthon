@@ -4,7 +4,13 @@ import './Hero.css';
 
 const Hero = () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const navigate = useNavigate();
+=======
+  const handleImageError = (e) => {
+    e.target.src = 'https://via.placeholder.com/500x300?text=Organic+Products';
+  };
+>>>>>>> Stashed changes
 =======
   const handleImageError = (e) => {
     e.target.src = 'https://via.placeholder.com/500x300?text=Organic+Products';
