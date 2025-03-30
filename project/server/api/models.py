@@ -5,6 +5,7 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
+from django.utils.timezone import now
 from django.core.files import File
 import qrcode
 from io import BytesIO
@@ -78,7 +79,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     objects = UserManager()
-
 class FarmerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.TextField()
