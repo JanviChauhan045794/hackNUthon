@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<!-- Hero Section -->
+<section class="relative min-h-screen bg-gradient-to-br from-[#0a2815] via-[#1a4731] to-[#2d6a4f] overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-[url('{% static 'images/pattern-bg.png' %}')] opacity-5"></div>
+        <div class="absolute inset-0 bg-gradient-radial from-transparent to-black/30"></div>
+        <div class="floating-particles"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 container mx-auto px-4 h-screen flex flex-col justify-center items-center">
+        <!-- Logo with Glow Effect -->
+        <div class="logo-container mb-12 relative">
+            <div class="absolute inset-0 bg-green-400 blur-2xl opacity-20 animate-pulse"></div>
+            <img src="{% static 'images/agroherb-logo.png' %}" alt="AgroHerb" 
+                 class="h-24 relative z-10 transform hover:scale-105 transition-all duration-500">
+  </div>
+  
+        <!-- Hero Text -->
+        <h1 class="text-6xl md:text-8xl font-bold text-center mb-8 hero-text">
+            <span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-100 via-green-200 to-green-100 animate-gradient">
+                Nature's Healing
+            </span>
+            <span class="block text-3xl md:text-4xl mt-4 text-green-100 font-light tracking-wide">
+                Powered by Technology
+            </span>
+        </h1>
+
+        <!-- Animated Subtitle -->
+        <p class="text-xl md:text-2xl text-green-100/90 text-center max-w-3xl mb-12 typing-text">
+            Discover the perfect blend of traditional herbal wisdom and modern verification systems
+        </p>
+
+        <!-- CTA Button -->
+        <div class="flex space-x-6">
+            <a href="#features" 
+               class="group relative inline-flex items-center px-8 py-4 text-lg font-medium">
+                <span class="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-emerald-600 transition-all duration-200 group-hover:scale-105"></span>
+                <span class="relative text-white flex items-center">
+                    Explore Features
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </span>
+            </a>
+    </div>
+  </div>
+  
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+        <span class="text-green-100/60 text-sm mb-2">Scroll to explore</span>
+        <div class="w-6 h-10 border-2 border-green-100/30 rounded-full flex items-start p-1">
+            <div class="w-4 h-4 bg-green-100/60 rounded-full animate-scroll"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="relative py-24 bg-white overflow-hidden">
+  <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+            <h2 class="text-5xl font-bold text-[#0a2815] mb-6 relative inline-block">
+                <span class="relative z-10">Powerful Features</span>
+                <div class="absolute -bottom-2 left-0 w-full h-3 bg-green-200/30 -skew-x-6"></div>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Experience the future of herbal commerce with our innovative platform
+            </p>
+      </div>
+      
+        <!-- Feature Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <!-- QR Traceability Card -->
+            <div class="feature-card group">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f3f9f1] to-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl">
+                    <div class="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-green-400 to-emerald-600 transform origin-left scale-x-0 transition-transform group-hover:scale-x-100"></div>
+                    
+                    <div class="feature-icon-wrapper mb-6">
+                        <div class="relative w-16 h-16">
+                            <div class="absolute inset-0 bg-green-400/20 rounded-xl blur-xl animate-pulse"></div>
+                            <div class="relative bg-gradient-to-br from-green-500 to-emerald-600 w-full h-full rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                <i class="fas fa-qrcode text-3xl text-white"></i>
+            </div>
+            </div>
+          </div>
+          
+                    <h3 class="text-xl font-bold text-[#0a2815] mb-4 group-hover:text-green-600 transition-colors">
+                        Blockchain Verification
+                    </h3>
+                    <p class="text-gray-600">
+                        Track your herbs from farm to home with our secure blockchain verification system
+                    </p>
+                </div>
+            </div>
+
+            <!-- Virtual Garden Card -->
+            <div class="feature-card group">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f1f9f3] to-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl">
+                    <div class="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-green-400 to-emerald-600 transform origin-left scale-x-0 transition-transform group-hover:scale-x-100"></div>
+                    
+                    <div class="feature-icon-wrapper mb-6">
+                        <div class="relative w-16 h-16">
+                            <div class="absolute inset-0 bg-green-400/20 rounded-xl blur-xl animate-pulse"></div>
+                            <div class="relative bg-gradient-to-br from-green-500 to-emerald-600 w-full h-full rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                <i class="fas fa-leaf text-3xl text-white"></i>
+                            </div>
+            </div>
+          </div>
+          
+                    <h3 class="text-xl font-bold text-[#0a2815] mb-4 group-hover:text-green-600 transition-colors">
+                        3D Herb Explorer
+                    </h3>
+                    <p class="text-gray-600">
+                        Explore medicinal plants in immersive 3D with detailed Ayurvedic information
+                    </p>
+                </div>
+            </div>
+
+            <!-- AYUSH Kits Card -->
+            <div class="feature-card group">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f3f9f1] to-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl">
+                    <div class="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-green-400 to-emerald-600 transform origin-left scale-x-0 transition-transform group-hover:scale-x-100"></div>
+                    
+                    <div class="feature-icon-wrapper mb-6">
+                        <div class="relative w-16 h-16">
+                            <div class="absolute inset-0 bg-green-400/20 rounded-xl blur-xl animate-pulse"></div>
+                            <div class="relative bg-gradient-to-br from-green-500 to-emerald-600 w-full h-full rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                <i class="fas fa-mortar-pestle text-3xl text-white"></i>
+            </div>
+          </div>
+        </div>
+        
+                    <h3 class="text-xl font-bold text-[#0a2815] mb-4 group-hover:text-green-600 transition-colors">
+                        Wellness Bundles
+                    </h3>
+                    <p class="text-gray-600">
+                        Curated AYUSH-certified product kits for immunity, digestion, and sleep
+                    </p>
+    </div>
+    </div>
+    
+            <!-- Live Stories Card -->
+            <div class="feature-card group">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f1f9f3] to-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl">
+                    <div class="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-green-400 to-emerald-600 transform origin-left scale-x-0 transition-transform group-hover:scale-x-100"></div>
+                    
+                    <div class="feature-icon-wrapper mb-6">
+                        <div class="relative w-16 h-16">
+                            <div class="absolute inset-0 bg-green-400/20 rounded-xl blur-xl animate-pulse"></div>
+                            <div class="relative bg-gradient-to-br from-green-500 to-emerald-600 w-full h-full rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                <i class="fas fa-video text-3xl text-white"></i>
+      </div>
+    </div>
+  </div>
+
+                    <h3 class="text-xl font-bold text-[#0a2815] mb-4 group-hover:text-green-600 transition-colors">
+                        Farm Stories
+                    </h3>
+                    <p class="text-gray-600">
+                        Watch live updates and stories from our network of certified organic farmers
+                    </p>
+    </div>
+            </div>
+
+            <!-- Calendar Card -->
+            <div class="feature-card group">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f3f9f1] to-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl">
+                    <div class="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-green-400 to-emerald-600 transform origin-left scale-x-0 transition-transform group-hover:scale-x-100"></div>
+                    
+                    <div class="feature-icon-wrapper mb-6">
+                        <div class="relative w-16 h-16">
+                            <div class="absolute inset-0 bg-green-400/20 rounded-xl blur-xl animate-pulse"></div>
+                            <div class="relative bg-gradient-to-br from-green-500 to-emerald-600 w-full h-full rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                <i class="fas fa-calendar-alt text-3xl text-white"></i>
+                            </div>
+          </div>
+        </div>
+        
+                    <h3 class="text-xl font-bold text-[#0a2815] mb-4 group-hover:text-green-600 transition-colors">
+                        Harvest Calendar
+                    </h3>
+                    <p class="text-gray-600">
+                        Interactive seasonal calendar showing local herb availability and peak freshness
+                    </p>
+                </div>
+            </div>
+
+            <!-- Impact Card -->
+            <div class="feature-card group">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f1f9f3] to-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl">
+                    <div class="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-green-400 to-emerald-600 transform origin-left scale-x-0 transition-transform group-hover:scale-x-100"></div>
+                    
+                    <div class="feature-icon-wrapper mb-6">
+                        <div class="relative w-16 h-16">
+                            <div class="absolute inset-0 bg-green-400/20 rounded-xl blur-xl animate-pulse"></div>
+                            <div class="relative bg-gradient-to-br from-green-500 to-emerald-600 w-full h-full rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                <i class="fas fa-chart-line text-3xl text-white"></i>
+          </div>
+        </div>
+      </div>
+      
+                    <h3 class="text-xl font-bold text-[#0a2815] mb-4 group-hover:text-green-600 transition-colors">
+                        Impact Metrics
+                    </h3>
+                    <p class="text-gray-600">
+                        Real-time dashboard showing your contribution to farmer welfare and sustainability
+                    </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom Styles -->
+<style>
+    /* Gradient Animation */
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% auto;
+        animation: gradient 4s ease infinite;
+    }
+
+    /* Floating Particles */
+    .floating-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 8%),
+            radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 8%),
+            radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 8%),
+            radial-gradient(circle at 70% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 8%);
+        animation: float 20s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-20px) scale(1.1); }
+    }
+
+    /* Scroll Animation */
+    @keyframes scroll {
+        0% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(20px); opacity: 0.5; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .animate-scroll {
+        animation: scroll 2s ease-in-out infinite;
+    }
+
+    /* Feature Card Hover Effects */
+    .feature-card {
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+    }
+
+    /* Typing Animation */
+    .typing-text {
+        border-right: 2px solid transparent;
+        animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: rgba(167, 243, 208, 0.5) }
+    }
+</style>
+
+{% endblock %}
